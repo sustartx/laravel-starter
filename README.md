@@ -16,7 +16,7 @@ Güncellenecek..
 
 ### Yapılacaklar
 
-- [ ] Auth
+- [ ] JWT Auth
 - [ ] Docker
 - [ ] Octane
 - [ ] Swoole
@@ -29,3 +29,5 @@ Güncellenecek..
 - [ ] Modüler Yapı
 - [ ] Gelişmiş Yetkilendirme
 - [ ] Vue Arayüz
+- [ ] NGinX Reverse Proxy
+
