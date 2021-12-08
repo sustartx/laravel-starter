@@ -30,4 +30,5 @@ Güncellenecek..
 - [ ] Gelişmiş Yetkilendirme
 - [ ] Vue Arayüz
 - [ ] NGinX Reverse Proxy
-
+- [x] IDE Helper
+- [x] Swoole Helper

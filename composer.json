@@ -15,11 +15,13 @@
         "laravel/ui": "^3.4"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
+        "openswoole/ide-helper": "@dev",
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
