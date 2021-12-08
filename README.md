@@ -18,8 +18,8 @@ Güncellenecek..
 
 - [ ] JWT Auth
 - [ ] Docker
-- [ ] Octane
-- [ ] Swoole
+- [x] Octane
+- [x] Swoole
 - [ ] Redis Session
 - [ ] Redis Cache
 - [ ] Redis Queue
