@@ -28,7 +28,7 @@ Güncellenecek..
 - [ ] Pusher
 - [ ] Modüler Yapı
 - [ ] Gelişmiş Yetkilendirme
-- [ ] Vue Arayüz
+- [x] Vue Arayüz
 - [ ] NGinX Reverse Proxy
 - [x] IDE Helper
 - [x] Swoole Helper
