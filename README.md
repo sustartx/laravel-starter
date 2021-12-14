@@ -1,4 +1,4 @@
-## Laravel Starter
+## Laravel Starter (PHP 8.1 + Laravel 8 + Octane + Swoole + Supervisor + Docker Compose)
 
 Bu çalışmayı kendi projelerimde sıklıkla oluşturduğum kalıbı kolayca tekrar oluşturabilmek için yaptım.
 
@@ -6,13 +6,25 @@ Bu çalışmayı kendi projelerimde sıklıkla oluşturduğum kalıbı kolayca t
 3 farklı yöntemle çalıştırılabilir.
 
 #### Artisan İle
-Güncellenecek..
+    php artisan serve
 
-#### Docker İle
-Güncellenecek..
+### Build
+    docker build -t laravel-octane .
+
+### Docker
+    docker run -p 9000:9000 --rm laravel-octane:latest
+
+### Docker Compose
+    docker-compose up -d --build
+    docker-compose up -d
+    docker-compose down
+
+### Docker Remove (volumes, images, etc.)
+    docker-compose down --rmi all -v --remove-orphans
 
 #### Octane İle
-Güncellenecek..
+    yarn install
+    php artisan octane:start --watch
 
 ### Yapılacaklar
 
@@ -23,7 +35,7 @@ Güncellenecek..
 - [ ] Redis Session
 - [ ] Redis Cache
 - [ ] Redis Queue
-- [ ] Redis Other
+- [ ] Redis Default
 - [ ] WebSocket
 - [ ] Pusher
 - [ ] Modüler Yapı
@@ -32,3 +44,10 @@ Güncellenecek..
 - [ ] NGinX Reverse Proxy
 - [x] IDE Helper
 - [x] Swoole Helper
+- [ ] Development ve Production php.ini
+- [ ] Log dışarı yazılmalı
+- [ ] MySQL
+- [ ] MariaDB
+- [ ] PostgreSQL
+- [ ] Swoole + Redis
+- [ ] Xdebug
