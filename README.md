@@ -26,6 +26,11 @@ Bu çalışmayı kendi projelerimde sıklıkla oluşturduğum kalıbı kolayca t
     yarn install
     php artisan octane:start --watch
 
+#### Laravel Artisan İşlemleri
+
+##### Migrate
+    docker-compose exec App php artisan migrate
+
 ### Yapılacaklar
 
 - [ ] JWT Auth
@@ -51,3 +56,4 @@ Bu çalışmayı kendi projelerimde sıklıkla oluşturduğum kalıbı kolayca t
 - [ ] PostgreSQL
 - [ ] Swoole + Redis
 - [ ] Xdebug
+- [ ] Memcached
