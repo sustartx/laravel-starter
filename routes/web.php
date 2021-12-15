@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'test'], function (){
+    Route::get('/', [\App\Http\Controllers\TestController::class, 'index']);
+    Route::get('/redis', [\App\Http\Controllers\TestController::class, 'redis']);
+    Route::get('/mysql', [\App\Http\Controllers\TestController::class, 'mysql']);
+    Route::get('/mariadb', [\App\Http\Controllers\TestController::class, 'mariadb']);
+    Route::get('/postgresql', [\App\Http\Controllers\TestController::class, 'postgresql']);
+});
