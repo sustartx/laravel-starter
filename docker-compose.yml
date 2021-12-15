@@ -174,3 +174,20 @@ volumes:
         driver: local
     Redis_Queue:
         driver: local
+
+# https://github.com/docker/for-linux/issues/418#issuecomment-780858044
+networks:
+    swoole:
+#        name: "TestNetwork"
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 10.10.1.0/24
+
+
+
+
+#
+
+
+
