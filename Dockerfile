@@ -116,26 +116,7 @@ RUN set -eux; pecl install -D 'enable-openssl="yes" enable-http2="yes"' swoole; 
 #ENV PATH "/grpc/cmake/build/third_party/protobuf:${PATH}"
 # --------------------------------------------------
 
-# TODO : Eksik
-#USER root
-#RUN set -eux; apt-get -yqq install mysql-client
-
-# TODO : memcache memcached
-#RUN apt-get install php-memcached libmemcached-tools && docker-php-ext-configure memcached && docker-php-ext-install memcached
-
-# TODO : Yukarı al
-#RUN apt-get install -yqq libmaxminddb-dev && docker-php-ext-install maxminddb
-#RUN apt-get install -yqq librrd-dev && docker-php-ext-install rrd
-#RUN apt-get install -yqq openssl
-
-# TODO : Eksik
-#RUN pecl install uopz mailparse  uploadprogress zmq
-#RUN docker-php-ext-install xml dev ps gearman oauth yaml phpdbg
-# Gerek yok : cgi cli common gnupg
-
 RUN echo "****************************************************************************************************"
-RUN lsb_release -a
-#RUN locate php
 RUN which php
 RUN php -v
 RUN php -m
