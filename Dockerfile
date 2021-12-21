@@ -21,7 +21,7 @@ RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs --opt
 
 LABEL maintainer="Şakir Mehmetoğlu"
 
-FROM php:8.1-bullseye
+FROM php:8.1-fpm-bullseye
 
 ARG WWWUSER=1000
 ARG WWWGROUP=1000
