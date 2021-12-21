@@ -1,13 +1,3 @@
-# https://github.com/nextcloud/docker/tree/master/.examples#php-module-smbclient
-# TODO : PHP sürümü 8.1 yapılmalı
-# TODO : PostgreSQL, MSSQL, Oracle için gerekli client kurulumları tamamlanmalı
-# TODO : Örnek kontrol
-#ARG INSTALL_XXX=true
-#RUN if [ ${INSTALL_XXX} = true ]; then \
-#    XXXX; \
-#  fi
-
-
 # PHP Composer
 FROM composer:latest AS vendor
 WORKDIR /var/www
