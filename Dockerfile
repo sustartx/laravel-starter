@@ -51,12 +51,8 @@ RUN set -eux; \
     && apt-get install -yqq --no-install-recommends \
         apt-utils lsb-release ca-certificates apt-transport-https wget software-properties-common \
         gnupg gnupg2 \
-        libjpeg-dev libpng-dev libfreetype6-dev libwebp-dev \
-        gosu git libcurl3-dev curl  supervisor libmemcached-dev libz-dev \
-        libbrotli-dev libpq-dev libonig-dev libssl-dev \
-        sqlite3 libcap2-bin python2 mlocate libxml2-dev \
-#        libc-client-dev libkrb5-dev \
-
+        gosu git supervisor \
+        libcap2-bin python2 mlocate  \
     # GNU Privacy Guard
     && mkdir -p ~/.gnupg \
     && chmod 600 ~/.gnupg \
