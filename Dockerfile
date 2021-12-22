@@ -138,7 +138,7 @@ RUN cat ./deployment/utilities.sh >> ~/.bashrc
 
 # Güncelleme ve temizlik yapılıyor
 RUN set -eux; apt-get update; apt-get upgrade -yqq
-RUN apt-get -y autoremove && apt-get clean all && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm /var/log/lastlog /var/log/faillog
+RUN apt-get -yqq autoremove --purge && apt-get clean all && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm /var/log/lastlog /var/log/faillog
 RUN updatedb
 
 EXPOSE 9000
