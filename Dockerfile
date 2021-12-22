@@ -99,21 +99,9 @@ RUN set -eux; pecl install -D 'enable-openssl="yes" enable-http2="yes"' swoole; 
 #            --enable-sockets --enable-swoole-curl --enable-swoole-json --with-postgres
 
 # --------------------------------------------------
-## Install grpc and probuf with pecl
-#RUN pecl install grpc && pecl install protobuf
-#
-## Enable grpc and protobuf extensions in php.ini file
-#RUN echo starting && docker-php-ext-enable grpc && docker-php-ext-enable protobuf
-#
-## Install cmake
-#RUN apt-get update -yqq && apt-get -y install cmake
-#
-## Install grpc_php_plugin and protoc
-#RUN git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin
-#
-## Setting node, protoc and grpc_php_plugin paths
-#ENV PATH "/grpc/cmake/build:${PATH}"
-#ENV PATH "/grpc/cmake/build/third_party/protobuf:${PATH}"
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
+ENV PATH "/grpc/cmake/build:${PATH}"
+ENV PATH "/grpc/cmake/build/third_party/protobuf:${PATH}"
 # --------------------------------------------------
 
 RUN echo "****************************************************************************************************"
