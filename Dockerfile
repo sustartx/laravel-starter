@@ -64,34 +64,7 @@ RUN set -eux; \
 # **************************************************************************************************
 # PHP ve gerekli kütüphaneleri
 # **************************************************************************************************
-# docker-php-ext-install ile yüklenebilenler
-RUN set -eux; docker-php-ext-install enchant pspell xsl odbc imap
-RUN set -eux; docker-php-ext-install dba pgsql soap
-RUN set -eux; docker-php-ext-install pcntl opcache bcmath mbstring pdo_mysql
-
-# pecl ile yüklenebilenler
-RUN set -eux; pecl install solr xhprof apcu ds ast inotify mongodb ssh2 xmlrpc fpm interbase msgpack psr mysql raphf sybase yac gmagick lz4 pcov zstd igbinary xdebug
-
-# Human Language ve Character Encoding
-RUN set -eux; apt-get install -yqq zlib1g-dev libicu-dev g++ && docker-php-ext-configure intl && docker-php-ext-install intl
-
-RUN set -eux; docker-php-ext-configure gd --prefix=/usr --with-jpeg --with-webp --with-freetype && docker-php-ext-install gd; php -r 'var_dump(gd_info());'
-RUN set -eux; apt-get install -yqq librabbitmq-dev libssh-dev && docker-php-ext-install bcmath sockets && pecl install amqp && rm -rf /tmp/pear && docker-php-ext-enable amqp
-RUN set -eux; apt-get install -yqq libsnmp-dev && docker-php-ext-install snmp
-RUN set -eux; apt-get install -yqq libgmp3-dev && docker-php-ext-install gmp
-RUN set -eux; apt-get install -yqq libtidy-dev && docker-php-ext-install tidy
-#RUN set -eux; apt-get install -yqq ldb-dev libldap openldap-dev && docker-php-ext-install ldap
-RUN set -eux; apt-get install -yqq libbz2-dev && docker-php-ext-install bz2
-RUN set -eux; apt-get install -yqq libzip-dev zip unzip && docker-php-ext-configure zip && docker-php-ext-install zip && php -m | grep -q 'zip'
-RUN set -eux; apt-get install -yqq librdkafka-dev && pecl install rdkafka && docker-php-ext-enable rdkafka
-#RUN set -eux; apt-get install -yqq libmcrypt-dev && pecl install mcrypt-1.0.4 && docker-php-ext-enable mcrypt
-RUN set -eux; apt-get install -yqq uuid-dev && pecl install uuid
-RUN set -eux; apt-get install -yqq libmpdec-dev && pecl install decimal
-RUN set -eux; apt-get install -yqq libvips-dev && pecl install vips
-RUN set -eux; apt-get install -yqq libmagickwand-dev --no-install-recommends && pecl install imagick && docker-php-ext-enable imagick && rm -r /var/lib/apt/lists/*
-#RUN set -eux; apt-get install -yqq smbclient libsmbclient-dev && pecl install smbclient && docker-php-ext-enable smbclient
-RUN set -eux; pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
-RUN set -eux; pecl install -D 'enable-openssl="yes" enable-http2="yes"' swoole; docker-php-ext-enable swoole; php -m | grep -q 'swoole'
+RUN set -eux; pecl install apcu
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
