@@ -92,12 +92,6 @@ RUN set -eux; apt-get install -yqq libmagickwand-dev --no-install-recommends && 
 #RUN set -eux; apt-get install -yqq smbclient libsmbclient-dev && pecl install smbclient && docker-php-ext-enable smbclient
 RUN set -eux; pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
 RUN set -eux; pecl install -D 'enable-openssl="yes" enable-http2="yes"' swoole; docker-php-ext-enable swoole; php -m | grep -q 'swoole'
-#RUN set -eux; install-swoole.sh 4.8.1 \
-#            --enable-http2   \
-#            --enable-mysqlnd \
-#            --enable-openssl \
-#            --enable-sockets --enable-swoole-curl --enable-swoole-json --with-postgres
-
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
