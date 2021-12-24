@@ -74,6 +74,10 @@ RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libgmp3-dev && docker
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libtidy-dev && docker-php-ext-install tidy && docker-php-ext-enable tidy
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libbz2-dev && docker-php-ext-install bz2 && docker-php-ext-enable bz2
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq librdkafka-dev && pecl install rdkafka && docker-php-ext-enable rdkafka
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libmpdec-dev && pecl install decimal
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libvips-dev && pecl install vips
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libxml2-dev && docker-php-ext-install soap && docker-php-ext-enable soap
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libxslt-dev && docker-php-ext-install xsl && docker-php-ext-enable xsl
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
