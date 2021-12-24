@@ -85,6 +85,8 @@ RUN set -eux; apt-get update -yqq &&  apt-get install -yqq ldap-utils libldap2-d
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq smbclient libsmbclient-dev && pecl install smbclient && docker-php-ext-enable smbclient
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libpq-dev && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && docker-php-ext-install pdo pdo_pgsql pgsql && docker-php-ext-enable pgsql
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq openssl libssl-dev libcurl3-dev curl && pecl install -D 'enable-sockets="no" enable-openssl="yes" enable-http2="yes" enable-mysqlnd="yes" enable-swoole-json="no" enable-swoole-curl="yes" enable-cares="yes" with-postgres="yes"' openswoole-4.8.1
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libxml2-dev && docker-php-ext-install xml && docker-php-ext-enable xml
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libenchant-2-dev && docker-php-ext-install enchant && docker-php-ext-enable enchant
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
