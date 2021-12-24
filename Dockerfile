@@ -78,6 +78,13 @@ RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libmpdec-dev && pecl 
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libvips-dev && pecl install vips
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libxml2-dev && docker-php-ext-install soap && docker-php-ext-enable soap
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libxslt-dev && docker-php-ext-install xsl && docker-php-ext-enable xsl
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/* && docker-php-ext-configure imap --with-kerberos --with-imap-ssl && docker-php-ext-install imap && docker-php-ext-enable imap
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libmagickwand-dev --no-install-recommends && pecl install imagick && docker-php-ext-enable imagick && rm -r /var/lib/apt/lists/*
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libicu-dev && docker-php-ext-configure intl && docker-php-ext-install intl && docker-php-ext-enable intl
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq ldap-utils libldap2-dev && rm -rf /var/lib/apt/lists/* && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && docker-php-ext-install ldap
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq smbclient libsmbclient-dev && pecl install smbclient && docker-php-ext-enable smbclient
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libpq-dev && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && docker-php-ext-install pdo pdo_pgsql pgsql && docker-php-ext-enable pgsql
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq openssl libssl-dev libcurl3-dev curl && pecl install -D 'enable-sockets="no" enable-openssl="yes" enable-http2="yes" enable-mysqlnd="yes" enable-swoole-json="no" enable-swoole-curl="yes" enable-cares="yes" with-postgres="yes"' openswoole-4.8.1
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
