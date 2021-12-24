@@ -69,6 +69,8 @@ RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libzip-dev zip unzip 
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq librabbitmq-dev && docker-php-ext-install bcmath sockets && pecl install amqp && rm -rf /tmp/pear && docker-php-ext-enable amqp
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libjpeg-dev libpng-dev libfreetype6-dev libwebp-dev && docker-php-ext-configure gd --prefix=/usr --with-jpeg --with-webp --with-freetype && docker-php-ext-install gd && docker-php-ext-enable gd
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq uuid-dev && pecl install uuid
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libsnmp-dev && docker-php-ext-install snmp && docker-php-ext-enable snmp
+RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libgmp3-dev && docker-php-ext-install gmp && docker-php-ext-enable gmp
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
