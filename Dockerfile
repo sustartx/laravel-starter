@@ -87,6 +87,12 @@ RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libpq-dev && docker-p
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq openssl libssl-dev libcurl3-dev curl && pecl install -D 'enable-sockets="no" enable-openssl="yes" enable-http2="yes" enable-mysqlnd="yes" enable-swoole-json="no" enable-swoole-curl="yes" enable-cares="yes" with-postgres="yes"' openswoole-4.8.1
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libxml2-dev && docker-php-ext-install xml && docker-php-ext-enable xml
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq libenchant-2-dev && docker-php-ext-install enchant && docker-php-ext-enable enchant
+RUN set -eux; docker-php-ext-install bcmath && docker-php-ext-configure bcmath && docker-php-ext-enable bcmath
+RUN set -eux; docker-php-ext-install sockets && docker-php-ext-configure sockets && docker-php-ext-enable sockets
+RUN set -eux; docker-php-ext-install calendar && docker-php-ext-configure calendar && docker-php-ext-enable calendar
+RUN set -eux; docker-php-ext-install exif && docker-php-ext-enable exif
+RUN set -eux; docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
+RUN set -eux; docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
