@@ -96,6 +96,8 @@ RUN set -eux; docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN set -eux; docker-php-ext-install pcntl && docker-php-ext-enable pcntl
 RUN set -eux; docker-php-ext-install opcache && docker-php-ext-enable opcache
 RUN set -eux; docker-php-ext-install dba && docker-php-ext-enable dba
+RUN set -eux; pecl install ds && docker-php-ext-enable ds
+RUN set -eux; pecl install ast && docker-php-ext-enable ast
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
