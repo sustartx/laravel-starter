@@ -104,6 +104,8 @@ RUN set -eux; pecl install mongodb && docker-php-ext-enable mongodb
 RUN set -eux; pecl install msgpack && docker-php-ext-enable msgpack
 RUN set -eux; pecl install psr && docker-php-ext-enable psr
 RUN set -eux; pecl install raphf && docker-php-ext-enable raphf
+RUN set -eux; pecl install yac && docker-php-ext-enable yac
+RUN set -eux; pecl install pcov && docker-php-ext-enable pcov
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
