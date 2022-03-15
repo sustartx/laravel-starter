@@ -110,6 +110,7 @@ RUN set -eux; pecl install zstd && docker-php-ext-enable zstd
 RUN set -eux; pecl install igbinary && docker-php-ext-enable igbinary
 RUN set -eux; pecl install xdebug && docker-php-ext-enable xdebug
 RUN set -eux; pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
+RUN set -eux; pecl install uopz && docker-php-ext-enable uopz
 # --------------------------------------------------
 RUN set -eux; apt-get update -yqq &&  apt-get install -yqq cmake libz-dev zlib1g-dev && pecl install grpc protobuf && docker-php-ext-enable grpc protobuf && git clone -b v1.42.0 https://github.com/grpc/grpc && cd grpc && git submodule update --init && mkdir cmake/build && cd cmake/build && cmake ../.. && make protoc grpc_php_plugin && cd ../../.. && rm -rf grpc
 ENV PATH "/grpc/cmake/build:${PATH}"
